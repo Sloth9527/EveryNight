@@ -10,3 +10,5 @@ adb connect 127.0.0.1:6555 //连接天天模拟器端口
 react-native start  //开启服务器
 
 react-native run-android //运行安卓应用
+
+PS:天天模拟 需切换到极速模式 否则会出现 device offline
