@@ -1,7 +1,7 @@
 # EveryNight
 （android） 每夜一篇文章
 
-需要安装的模块
+需要安装的modules
 
 - react-native-iconic-font
 
