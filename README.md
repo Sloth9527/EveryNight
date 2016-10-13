@@ -1,5 +1,5 @@
 # EveryNight
- 每夜一篇文章
+（android） 每夜一篇文章
 
     react native 常用命令
 
