@@ -1,7 +1,10 @@
 # EveryNight
-（android） 每夜一篇文章
 
-需要安装的modules
+#### 这是一款阅读类app，每夜推送一篇美文作为睡前读物，重拾阅读的魅力。
+
+
+
+## modules
 
 - react-native-iconic-font
 
@@ -11,8 +14,8 @@
 
  react-native-timer-mixin
 
-----------------------------------
-    react native 常用命令
+****
+## react native 常用命令
 
 - react-native init Hello  //初始化项目
  
