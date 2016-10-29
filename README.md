@@ -2,11 +2,19 @@
 
 #### 这是一款阅读类app，每夜推送一篇美文作为睡前读物，重拾阅读的魅力。
 
+今日精选
+
 ![imge](https://github.com/940941188/EveryNight/blob/master/pic/2.png)
+
+热门排行榜
 
 ![imge](https://github.com/940941188/EveryNight/blob/master/pic/3.png)
 
+阅读记录
+
 ![imge](https://github.com/940941188/EveryNight/blob/master/pic/4.png)
+
+阅读页面
 
 ![imge](https://github.com/940941188/EveryNight/blob/master/pic/5.png)
 
