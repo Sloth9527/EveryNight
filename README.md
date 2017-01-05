@@ -50,4 +50,4 @@
 
  react-native run-android //运行安卓应用
 
- PS:天天模拟 需切换到极速模式 否则会出现 device offline
+ adb 新版本会导致 device offline 
