@@ -1,6 +1,8 @@
+
 //1.得到一本书的详细信息 ： http://localhost:18000/book?id=1 127.0.0.1
 var fs=require('fs');
-var BooksSummary = JSON.parse(fs.readFileSync('./dt/BooksSummary.json'));
+var db = require('./db.js');
+// var BooksSummary = JSON.parse(fs.readFileSync('./dt/BooksSummary.json'));
 //fs.writeFileSync('./dt/BooksSummary.json',JSON.stringify(BooksSummary));
 var Book = JSON.parse(fs.readFileSync('./dt/Book.json'));
 //fs.writeFileSync('./dt/Book.json',JSON.stringify(Book));
@@ -19,65 +21,23 @@ var wrong=[{
 	text:'忘存文章了诶',
 	img:null,
 }];
-var HotList = [
-{name:'month',
-listid:[4,1,3,6,7,8,9,10,11,12,13,14,15,16],
-list:[],
-},
-{name:'year',
-listid:[3,2,5,4,16],
-list:[],
-}];
-for (var i in HotList) {
-	for (var lnum in HotList[i].listid ) {
-		for (var snum in BooksSummary) {
-			if (HotList[i].listid[lnum] == BooksSummary[snum].id ) {
-				var text = BooksSummary[snum] ;
-				HotList[i].list.push(text);
-			}
-		}
-	}
-}
-var EList = [
-{date:{month:'April',day:'21'},
-listid:[1,2,3],
-list:[] ,
-},
-{date:{month:'February',day:'30'},
-listid:[4,5,6],
-list:[] ,
-},
-{date:{month:'January ',day:'12'},
-listid:[7,8,9],
-list:[] ,
-},
-{date:{month:'January ',day:'11'},
-listid:[10,11,12],
-list:[] ,
-},
-{date:{month:'January ',day:'10'},
-listid:[13,14,15],
-list:[] ,
-},
-];
-for (var k in EList) {
-	for (var anum in EList[k].listid) {
-		for (var esnum in BooksSummary) {
-			if (EList[k].listid[anum] == BooksSummary[esnum].id ) {
-				var text2 = BooksSummary[esnum] ;
-				EList[k].list.push(text2);
-			}
-		}
-	}
-}
+// var HotList = JSON.parse(fs.readFileSync('./dt/HotList.json'));
+// var EList = JSON.parse(fs.readFileSync('./dt/EList.json'));
+var HotList,EList;
+db.find({"list":"EList"},function(res){
+		EList =res[0].data;
+})
+db.find({"list":"HotList"},function(res){
+		HotList = res[0].data;
+})
 
 var http = require('http'); //http是node.js 的核心组件
 var url = require('url');
-
+var db = require('./db.js');
 
 http.createServer(function(request,response){
 	var param = url.parse(request.url,true);
-	response.writeHead(200, {'Content-Type': 'text/plain'});
+	response.writeHead(200,{"Content-Type":'text/plain','charset':'utf-8','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'PUT,POST,GET,DELETE,OPTIONS'});//可以解决跨域的请求
 	switch(param.pathname){
 		case'/elist':
 		//var id = param.query["id"];
@@ -113,9 +73,7 @@ http.createServer(function(request,response){
 			if (pageid == BooksSummary[index].id) {
 				detail[0].title = BooksSummary[index].title;
 				detail[0].author= BooksSummary[index].author;
-				detail[0].img = BooksSummary[index].img;
-				
-				
+				detail[0].img = BooksSummary[index].img;	
 			}
 		}
 		for (var indexbook in Book) {
@@ -146,8 +104,7 @@ http.createServer(function(request,response){
 	
 }).listen(18000);//端口号
 
-console.log('Server running at http://localhost:18000/')
+console.log('Server running at http://localhost:18000/');
 //Server>node test1.js
 //ls --->  list:列出当前目录下所有的目录和文件
 //cd --->  currentDireactory : 改变当前目录
-//node test1.js
